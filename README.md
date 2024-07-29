@@ -1,5 +1,4 @@
-FFTConvolver
-============
+# FFTConvolver
 
 FFTConvolver is a C++ library for highly efficient convolution of
 audio data (e.g. for usage in real-time convolution reverbs etc.).
@@ -7,32 +6,38 @@ audio data (e.g. for usage in real-time convolution reverbs etc.).
 - Partitioned convolution algorithm (using uniform block sizes)
 - Optional support for non-uniform block sizes (TwoStageFFTConvolver)
 - No external dependencies (FFT already included)
-- Optional optimization for SSE (enabled by defining FFTCONVOLVER_USE_SSE)
+- Optional optimization for SSE (enabled by defining `FFTCONVOLVER_USE_SSE`)
+- Optional tests (enabled by defining `FFTCONVOLVER_BUILD_TESTS`)
 
-# Building
+## Building
 
 Use [CMake](https://cmake.org) to generate the project, e.g.:
 
 ```sh
-mkdir build && cd build
-cmake .. -DCMAKE_BUILD_TYPE=Release
+cmake -S . -B build -D CMAKE_BUILD_TYPE=Release
 
 # Or enable SSE optimizations (OFF by default)
-cmake .. -DCMAKE_BUILD_TYPE=Release -DFFTCONVOLVER_USE_SSE=ON
+cmake -S . -B build -D CMAKE_BUILD_TYPE=Release -D FFTCONVOLVER_USE_SSE=ON
 ```
 
 You can build the project by using the generated build files directly, or by
 running the build tool through CMake:
 
 ```sh
-cmake --build .
+cmake --build build
 ```
 
-## Running the Tests
+## Testing
 
-The build produces a `Test` executable and a `FFTConvolver` static library.
-Simply run the executable as follows:
+To run the test-suite, pass `-D FFTCONVOLVER_BUILD_TESTS=ON` to the first
+`cmake` invocation.
 
 ```sh
-./Test
+cmake -S . -B build -D FFTCONVOLVER_BUILD_TESTS=ON
+cmake --build build
+ctest --test-dir build
 ```
+
+### License
+
+This project utilizes the [MIT](COPYING.txt) license.
