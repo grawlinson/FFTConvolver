@@ -38,7 +38,7 @@ cmake --build build
 ctest --test-dir build
 ```
 
-### License
+## License
 
 This project utilizes the [MIT](COPYING.txt) license.
 
