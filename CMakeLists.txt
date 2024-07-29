@@ -36,12 +36,12 @@ if(FFTCONVOLVER_USE_SSE)
 endif()
 
 if(FFTCONVOLVER_BUILD_TESTS)
-    # Test executable
+    enable_testing()
     set(Test_SOURCES
         test/Test.cpp
     )
 
     add_executable(Test ${Test_SOURCES})
     target_link_libraries(Test PRIVATE FFTConvolver)
+    add_test(NAME FFTConvolverTest COMMAND fftconvolver_test)
 endif()
-
