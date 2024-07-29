@@ -11,7 +11,7 @@ audio data (e.g. for usage in real-time convolution reverbs etc.).
 
 ## Building
 
-Use [CMake](https://cmake.org) to generate the project, e.g.:
+Use [CMake][1] to generate the project, e.g.:
 
 ```sh
 cmake -S . -B build -D CMAKE_BUILD_TYPE=Release
@@ -41,3 +41,8 @@ ctest --test-dir build
 ### License
 
 This project utilizes the [MIT](COPYING.txt) license.
+
+The FFT implementation is based on the great radix-4 routines by [Takuya Ooura][0].
+
+[0]: https://www.kurims.kyoto-u.ac.jp/~ooura/fft.html
+[1]: https://cmake.org
