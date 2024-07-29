@@ -28,9 +28,9 @@
 #include <cstdio>
 #include <cstdlib>
 
-#include "../FFTConvolver.h"
-#include "../TwoStageFFTConvolver.h"
-#include "../Utilities.h"
+#include "FFTConvolver/FFTConvolver.h"
+#include "FFTConvolver/TwoStageFFTConvolver.h"
+#include "FFTConvolver/Utilities.h"
 
 
 template<typename T>

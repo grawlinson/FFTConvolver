@@ -19,7 +19,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // ==================================================================================
 
-#include "TwoStageFFTConvolver.h"
+#include "FFTConvolver/TwoStageFFTConvolver.h"
 
 #include <algorithm>
 #include <cmath>

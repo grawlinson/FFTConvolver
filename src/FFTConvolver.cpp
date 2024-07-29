@@ -19,7 +19,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // ==================================================================================
 
-#include "FFTConvolver.h"
+#include "FFTConvolver/FFTConvolver.h"
 
 #include <cassert>
 #include <cmath>
