@@ -37,11 +37,17 @@ endif()
 
 if(FFTCONVOLVER_BUILD_TESTS)
     enable_testing()
-    set(Test_SOURCES
-        test/Test.cpp
+    set(Test_FFT_SOURCES
+        test/test_fftconvolver.cpp
     )
+    add_executable(test_fftconvolver ${Test_FFT_SOURCES})
+    target_link_libraries(test_fftconvolver PRIVATE FFTConvolver)
+    add_test(NAME Test_FFTConvolver COMMAND test_fftconvolver)
 
-    add_executable(Test ${Test_SOURCES})
-    target_link_libraries(Test PRIVATE FFTConvolver)
-    add_test(NAME FFTConvolverTest COMMAND fftconvolver_test)
+    set(Test_AFFT_SOURCES
+        test/test_audiofft.cpp
+    )
+    add_executable(test_audiofft ${Test_AFFT_SOURCES})
+    target_link_libraries(test_audiofft PRIVATE AudioFFT)
+    add_test(NAME Test_AudioFFT COMMAND test_audiofft)
 endif()
