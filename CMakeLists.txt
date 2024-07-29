@@ -27,6 +27,8 @@ set(FFTConvolver_SOURCES
 add_library(FFTConvolver STATIC ${FFTConvolver_SOURCES})
 target_link_libraries(FFTConvolver PRIVATE AudioFFT)
 
+target_include_directories(FFTConvolver PUBLIC . )
+
 if(FFTCONVOLVER_USE_SSE)
     target_compile_definitions(FFTConvolver PRIVATE -DFFTCONVOLVER_USE_SSE)
 endif()
