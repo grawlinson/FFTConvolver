@@ -19,7 +19,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // ==================================================================================
 
-#include "AudioFFT.h"
+#include "FFTConvolver/AudioFFT.h"
 
 #include <cassert>
 #include <cmath>

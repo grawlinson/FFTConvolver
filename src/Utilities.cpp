@@ -21,7 +21,6 @@
 
 #include "FFTConvolver/Utilities.h"
 
-
 namespace fftconvolver
 {
 
