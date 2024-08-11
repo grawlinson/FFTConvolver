@@ -77,19 +77,25 @@ if(FFTCONVOLVER_USE_SSE)
   target_compile_definitions(FFTConvolver PRIVATE FFTCONVOLVER_USE_SSE=1)
 endif()
 
-if(FFTCONVOLVER_BUILD_TESTS)
-    enable_testing()
-    set(Test_FFT_SOURCES
-        test/test_fftconvolver.cpp
-    )
-    add_executable(test_fftconvolver ${Test_FFT_SOURCES})
-    target_link_libraries(test_fftconvolver PRIVATE FFTConvolver)
-    add_test(NAME Test_FFTConvolver COMMAND test_fftconvolver)
+# enable testing if either option passed
+if(AUDIOFFT_BUILD_TESTS OR FFTCONVOLVER_BUILD_TESTS)
+  enable_testing()
+endif()
 
-    set(Test_AFFT_SOURCES
-        test/test_audiofft.cpp
-    )
-    add_executable(test_audiofft ${Test_AFFT_SOURCES})
-    target_link_libraries(test_audiofft PRIVATE AudioFFT)
-    add_test(NAME Test_AudioFFT COMMAND test_audiofft)
+if(AUDIOFFT_BUILD_TESTS)
+  set(Test_AFFT_SOURCES
+    test/test_audiofft.cpp
+  )
+  add_executable(test_audiofft ${Test_AFFT_SOURCES})
+  target_link_libraries(test_audiofft PRIVATE AudioFFT)
+  add_test(NAME Test_AudioFFT COMMAND test_audiofft)
+endif()
+
+if(FFTCONVOLVER_BUILD_TESTS)
+  set(Test_FFT_SOURCES
+    test/test_fftconvolver.cpp
+  )
+  add_executable(test_fftconvolver ${Test_FFT_SOURCES})
+  target_link_libraries(test_fftconvolver PRIVATE FFTConvolver)
+  add_test(NAME Test_FFTConvolver COMMAND test_fftconvolver)
 endif()
