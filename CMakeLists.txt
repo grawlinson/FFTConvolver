@@ -1,4 +1,5 @@
-cmake_minimum_required(VERSION 3.12)
+# update minimum cmake version when oldest ubuntu LTS drops support
+cmake_minimum_required(VERSION 3.16)
 
 project(FFTConvolver CXX)
 
