@@ -8,8 +8,13 @@ endif()
 
 project(FFTConvolver LANGUAGES CXX)
 
+# options
+option(AUDIOFFT_BUILD_TESTS "Build tests for AudioFFT" OFF)
+option(AUDIOFFT_INTEL_IPP "Enable usage of Intel IPP library" OFF)
+option(AUDIOFFT_APPLE_ACCELERATE "Enable usage of Apple Accelerate library (Apple only)" OFF)
+option(AUDIOFFT_FFTW3 "Enable usage of FFTW3 library" OFF)
 option(FFTCONVOLVER_USE_SSE "Enable SSE optimizations" OFF)
-option(FFTCONVOLVER_BUILD_TESTS "Build tests" OFF)
+option(FFTCONVOLVER_BUILD_TESTS "Build tests for FFTConvolver" OFF)
 
 # AudioFFT static library
 set(AudioFFT_SOURCES
