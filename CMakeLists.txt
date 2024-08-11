@@ -1,7 +1,12 @@
 # update minimum cmake version when oldest ubuntu LTS drops support
 cmake_minimum_required(VERSION 3.16)
 
-project(FFTConvolver CXX)
+# require a minimum of C++ 11, but let's aim higher
+if(NOT DEFINED CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD 17)
+endif()
+
+project(FFTConvolver LANGUAGES CXX)
 
 option(FFTCONVOLVER_USE_SSE "Enable SSE optimizations" OFF)
 option(FFTCONVOLVER_BUILD_TESTS "Build tests" OFF)
