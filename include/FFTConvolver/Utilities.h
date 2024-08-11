@@ -19,8 +19,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // ==================================================================================
 
-#ifndef _FFTCONVOLVER_UTILITIES_H
-#define _FFTCONVOLVER_UTILITIES_H
+#pragma once
 
 #include <algorithm>
 #include <cassert>
@@ -351,5 +350,3 @@ void ComplexMultiplyAccumulate(Sample* FFTCONVOLVER_RESTRICT re,
                                const size_t len);
   
 } // End of namespace fftconvolver
-
-#endif // Header guard

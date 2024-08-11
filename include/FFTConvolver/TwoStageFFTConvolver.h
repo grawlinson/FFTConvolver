@@ -19,8 +19,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // ==================================================================================
 
-#ifndef _FFTCONVOLVER_TWOSTAGEFFTCONVOLVER_H
-#define _FFTCONVOLVER_TWOSTAGEFFTCONVOLVER_H
+#pragma once
 
 #include "FFTConvolver.h"
 #include "Utilities.h"
@@ -125,5 +124,3 @@ private:
 };
   
 } // End of namespace fftconvolver
-
-#endif // Header guard
