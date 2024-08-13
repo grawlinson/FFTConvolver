@@ -61,6 +61,12 @@ jobs:
             c_compiler: cl
             cpp_compiler: cl
             cmake_parallel: 4
+          - name: windows-msvc-sse
+            os: windows-latest
+            c_compiler: cl
+            cpp_compiler: cl
+            cmake_parallel: 4
+            extra_flags: -DFFTCONVOLVER_USE_SSE=ON
 
     steps:
       - name: Checkout the repository
