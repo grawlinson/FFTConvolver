@@ -89,7 +89,7 @@ jobs:
           -DAUDIOFFT_BUILD_TESTS=ON
           -DFFTCONVOLVER_BUILD_TESTS=ON
           -S ${{ github.workspace }}
-          {$$ matrix.extra-flags }}
+          ${{ matrix.extra-flags }}
 
       - name: Build
         # --config is needed because the default
