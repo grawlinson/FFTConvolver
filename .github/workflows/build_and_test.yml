@@ -28,17 +28,34 @@ jobs:
             c_compiler: gcc
             cpp_compiler: g++
             cmake_parallel: 4
-            extra_flags:
+          - name: linux-gcc-sse
+            os: ubuntu-latest
+            c_compiler: gcc
+            cpp_compiler: g++
+            cmake_parallel: 4
+            extra_flags: -DFFTCONVOLVER_USE_SSE=ON
           - name: linux-clang
             os: ubuntu-latest
             c_compiler: clang
             cpp_compiler: clang++
             cmake_parallel: 4
+          - name: linux-clang-sse
+            os: ubuntu-latest
+            c_compiler: clang
+            cpp_compiler: clang++
+            cmake_parallel: 4
+            extra_flags: -DFFTCONVOLVER_USE_SSE=ON
           - name: macos-clang
             os: macos-latest
             c_compiler: clang
             cpp_compiler: clang++
             cmake_parallel: 3
+          - name: macos-clang-accelerate
+            os: macos-latest
+            c_compiler: clang
+            cpp_compiler: clang++
+            cmake_parallel: 3
+            extra_flags: -DAUDIOFFT_APPLE_ACCELERATE=ON
           - name: windows-msvc
             os: windows-latest
             c_compiler: cl
@@ -72,6 +89,7 @@ jobs:
           -DAUDIOFFT_BUILD_TESTS=ON
           -DFFTCONVOLVER_BUILD_TESTS=ON
           -S ${{ github.workspace }}
+          {$$ matrix.extra-flags }}
 
       - name: Build
         # --config is needed because the default
