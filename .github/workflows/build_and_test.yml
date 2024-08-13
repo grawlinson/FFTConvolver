@@ -69,6 +69,8 @@ jobs:
           -DCMAKE_CXX_COMPILER_LAUNCHER=sccache
           -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }}
           -DCMAKE_BUILD_PARALLEL_LEVEL=${{ matrix.cmake_parallel }}
+          -DAUDIOFFT_BUILD_TESTS=ON
+          -DFFTCONVOLVER_BUILD_TESTS=ON
           -S ${{ github.workspace }}
 
       - name: Build
