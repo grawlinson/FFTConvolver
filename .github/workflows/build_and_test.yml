@@ -1,0 +1,83 @@
+---
+
+name: Build & Test
+
+on:  # yamllint disable-line rule:truthy
+  push:
+    branches: ["primary"]
+  pull_request:
+    branches: ["primary"]
+
+env:
+  BUILD_TYPE: "Release"
+  SCCACHE_GHA_ENABLED: true
+
+jobs:
+  build_and_test:
+    name: ${{ matrix.name }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      # Ensure feedback is delivered for all matrix combinations
+      fail-fast: false
+
+      matrix:
+        include:
+          - name: linux-gcc
+            os: ubuntu-latest
+            c_compiler: gcc
+            cpp_compiler: g++
+            cmake_parallel: 4
+            extra_flags:
+          - name: linux-clang
+            os: ubuntu-latest
+            c_compiler: clang
+            cpp_compiler: clang++
+            cmake_parallel: 4
+          - name: macos-clang
+            os: macos-latest
+            c_compiler: clang
+            cpp_compiler: clang++
+            cmake_parallel: 3
+          - name: windows-msvc
+            os: windows-latest
+            c_compiler: cl
+            cpp_compiler: cl
+            cmake_parallel: 4
+
+    steps:
+      - name: Set reusable strings
+        id: strings
+        shell: bash
+        run: >
+          echo "build-output-dir=${{ github.workspace }}/build"
+          >> "$GITHUB_OUTPUT"
+
+      - name: Cache the build
+        uses: mozilla-actions/sccache-action@v0.0.5
+
+      - name: Configure CMake
+        run: >
+          cmake -B ${{ steps.strings.outputs.build-output-dir }}
+          -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
+          -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }}
+          -DCMAKE_C_COMPILER_LAUNCHER=sccache
+          -DCMAKE_CXX_COMPILER_LAUNCHER=sccache
+          -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }}
+          -DCMAKE_BUILD_PARALLEL_LEVEL=${{ matrix.cmake_parallel }}
+          -S ${{ github.workspace }}
+
+      - name: Build
+        # --config is needed because the default
+        # Windows generator is a multi-config generator
+        run: >
+          cmake
+          --build ${{ steps.strings.outputs.build-output-dir }}
+          --config ${{ env.BUILD_TYPE }}
+          --parallel ${{ matrix.cmake_parallel }}
+
+      - name: Test
+        run: >
+          ctest
+          --output-on-failure
+          --test-dir ${{ steps.strings.outputs.build-output-dir }}
