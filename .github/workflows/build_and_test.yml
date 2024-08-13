@@ -87,3 +87,4 @@ jobs:
           ctest
           --output-on-failure
           --test-dir ${{ steps.strings.outputs.build-output-dir }}
+          --build-config ${{ env.BUILD_TYPE }}
