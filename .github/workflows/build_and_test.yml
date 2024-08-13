@@ -46,6 +46,9 @@ jobs:
             cmake_parallel: 4
 
     steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+
       - name: Set reusable strings
         id: strings
         shell: bash
@@ -58,7 +61,8 @@ jobs:
 
       - name: Configure CMake
         run: >
-          cmake -B ${{ steps.strings.outputs.build-output-dir }}
+          cmake
+          -B ${{ steps.strings.outputs.build-output-dir }}
           -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
           -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }}
           -DCMAKE_C_COMPILER_LAUNCHER=sccache
