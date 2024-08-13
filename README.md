@@ -3,10 +3,13 @@
 FFTConvolver is a C++ library for highly efficient convolution of
 audio data (e.g. for usage in real-time convolution reverbs etc.).
 
+Note: This is an up-to-date fork of [HiFi-LoFi][2]'s library with CMake
+support. Additional features via pull request/issue/etc are welcome!
+
 - Partitioned convolution algorithm (using uniform block sizes)
 - Optional support for non-uniform block sizes (TwoStageFFTConvolver)
 - No external dependencies (FFT already included)
-- Optional optimization for SSE vector operations
+- Optional optimization for SSE vector operations (x86/x64 architectures only)
 - Optional FFT acceleration (Apple Accelerate, Intel IPP & FFTW3)
 - Optional tests
 
@@ -54,3 +57,4 @@ The FFT implementation is based on the great radix-4 routines by [Takuya Ooura][
 
 [0]: https://www.kurims.kyoto-u.ac.jp/~ooura/fft.html
 [1]: https://cmake.org
+[2]: https://github.com/HiFi-LoFi/FFTConvolver
